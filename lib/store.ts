@@ -3,6 +3,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 interface CartItem {
+  desc: string;
   id: string;
   name: string;
   price: number;
