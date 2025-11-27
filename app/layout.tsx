@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "K Devices e-Store",
+  title: "Fashion e-Store",
   description: "Built with Next js",
 };
 
@@ -15,10 +15,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <>
-          {children}
-          <Toaster />
-        </>
+        <>{children}</>
+        <Toaster richColors position="top-right" expand />
       </body>
     </html>
   );

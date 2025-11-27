@@ -70,8 +70,8 @@ export default function CartContents() {
                     <div className="relative flex-shrink-0">
                       <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-xl overflow-hidden bg-white">
                         <Image
-                          src={item.img[0]}
-                          alt={item.name}
+                          src={item.image}
+                          alt={item.title}
                           width={200}
                           height={200}
                           className="w-full h-full object-contain p-2"
@@ -87,7 +87,7 @@ export default function CartContents() {
                           className="block group-hover:text-purple-600 transition-colors"
                         >
                           <h3 className="text-base lg:text-lg font-bold text-gray-900 mb-1 line-clamp-2">
-                            {item.name}
+                            {item.title}
                           </h3>
                         </Link>
                         <p className="text-sm text-gray-600 mb-3 line-clamp-1">

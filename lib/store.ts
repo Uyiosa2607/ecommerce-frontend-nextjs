@@ -1,22 +1,45 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+import { toast } from "sonner";
 
 interface CartItem {
   desc: string;
   id: string;
-  name: string;
+  title: string;
+  rating?: {
+    count: number;
+    rate: number;
+  };
   price: number;
   quantity: number;
-  img: string;
+  image: string;
+}
+
+interface LikedProducts {
+  title: string;
+  quantity: number;
+  id: string;
+  image: string;
+  desc: string;
+  rating?: {
+    count: number;
+    rate: number;
+  };
+  category?: string;
+  price: number;
 }
 
 interface CartState {
   cart: CartItem[];
+  likedProduct: LikedProducts[];
   addToCart(item: CartItem): void;
   removeFromCart(id: string): void;
   updateQuantity(id: string, quantity: number): void;
+  addToFavourites: (item: LikedProducts) => void;
+  toggleFavourite: (item: LikedProducts) => void;
   clearCart(): void;
+  removeFromFavourites: (id: string | number) => void;
 }
 
 export const useCartStore = create<CartState>()(
@@ -24,6 +47,7 @@ export const useCartStore = create<CartState>()(
     function (set, get) {
       return {
         cart: [],
+        likedProduct: [],
 
         addToCart: function (item) {
           set(function (state) {
@@ -40,6 +64,7 @@ export const useCartStore = create<CartState>()(
                 }),
               };
             } else {
+              toast.success("Product added to Cart");
               return { cart: [...state.cart, { ...item, quantity: 1 }] };
             }
           });
@@ -67,7 +92,38 @@ export const useCartStore = create<CartState>()(
           });
         },
 
-        clearCart: function () {
+        addToFavourites: (item: LikedProducts) => {
+          set((state) => {
+            const alreadyExists = state.likedProduct.some(
+              (i) => i.id === item.id
+            );
+
+            if (alreadyExists) {
+              toast.info("Already in your favourites ❤️");
+              return state;
+            }
+
+            toast.success("Added to favourites ❤️");
+            return {
+              likedProduct: [...state.likedProduct, item],
+            };
+          });
+        },
+
+        removeFromFavourites: (id) => {
+          set((state) => ({
+            likedProduct: state.likedProduct.filter((item) => item.id !== id),
+          }));
+        },
+
+        toggleFavourite: (item) => {
+          const { likedProduct, addToFavourites, removeFromFavourites } = get();
+          const exists = likedProduct.some((i) => i.id === item.id);
+          if (exists) removeFromFavourites(item.id);
+          else addToFavourites(item);
+        },
+
+        clearCart: () => {
           set({ cart: [] });
         },
       };
