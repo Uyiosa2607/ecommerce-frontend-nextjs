@@ -34,8 +34,8 @@ export default function CartContents() {
           Your cart is empty
         </h2>
         <p className="text-gray-600 mb-8 text-center max-w-md">
-          Looks like you haven't added anything to your cart yet. Start shopping
-          to fill it up!
+          Looks like you haven&apos;t added anything to your cart yet. Start
+          shopping to fill it up!
         </p>
         <Button
           asChild

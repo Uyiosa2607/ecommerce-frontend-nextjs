@@ -2,7 +2,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CartContents from "@/components/CartContents";
-import { ShoppingCart } from "lucide-react";
+import { Link, ShoppingCart } from "lucide-react";
 
 export default function CartPage() {
   return (
@@ -25,9 +25,9 @@ export default function CartPage() {
 
           {/* Breadcrumb */}
           <div className="flex items-center justify-center gap-2 text-sm text-gray-600 mb-8">
-            <a href="/" className="hover:text-purple-600 transition-colors">
+            <Link href="/" className="hover:text-purple-600 transition-colors">
               Home
-            </a>
+            </Link>
             <span>/</span>
             <span className="text-gray-900 font-semibold">Cart</span>
           </div>
