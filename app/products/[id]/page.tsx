@@ -301,33 +301,35 @@ export default function ProductDetails() {
 
         {/* Related Products */}
         <div className="max-w-7xl mx-auto">
-          <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-8">
+          <h3 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-10 lg:mb-12 text-center lg:text-left">
             You May Also Like
           </h3>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
             {relatedProducts.map((product) => (
               <div
                 key={product.id}
-                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-1"
+                className="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
               >
-                <div className="relative aspect-square overflow-hidden bg-gray-100">
+                <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
                   <Image
                     width={500}
                     height={500}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     src={product.image}
                     alt={product.name}
                   />
-                  <button className="absolute top-3 right-3 p-2 bg-white/95 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-all hover:scale-110">
-                    <Heart className="w-4 h-4 text-gray-700" />
+                  <button className="absolute top-4 right-4 p-3 bg-white/95 backdrop-blur-md rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 shadow-lg">
+                    <Heart className="w-5 h-5 text-gray-700" />
                   </button>
                 </div>
-                <div className="p-4">
-                  <h4 className="text-base font-bold text-gray-900 mb-1">
+                <div className="p-5 lg:p-6">
+                  <h4 className="text-base lg:text-lg font-bold text-gray-900 mb-2 line-clamp-1 group-hover:text-purple-600 transition-colors duration-300">
                     {product.name}
                   </h4>
-                  <p className="text-sm text-gray-600 mb-2">{product.desc}</p>
-                  <p className="text-xl font-bold text-gray-900">
+                  <p className="text-sm text-gray-600 mb-3 line-clamp-2 leading-relaxed">
+                    {product.desc}
+                  </p>
+                  <p className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                     ${product.price}
                   </p>
                 </div>
